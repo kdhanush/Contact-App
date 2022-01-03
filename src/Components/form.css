@@ -1,0 +1,25 @@
+.forminput{
+    display: flex;
+    gap: 10%;
+    flex-direction: column; 
+    align-items: center;
+    width: 40%;
+    margin-left:auto;
+    margin-right: auto;
+    
+    
+    
+}
+
+.forminput input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: none;
+    
+}
+
+.errors{
+    color: red;
+}
+

@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../app.css";
 import "./form.css";
 import { Upload, message } from "antd";
+import { Button } from "antd";
 
 const getLocalItems = () => {
   let localContactItems = localStorage.getItem("Details");
@@ -31,7 +32,7 @@ function Createprofile() {
     address: "",
     gender: "male",
   });
-//get id and setinput to edit the data
+  //get id and setinput to edit the data
   function getDataFromId() {
     if (id) {
       let _newEditItem = newInput.filter((elem) => elem && elem.id == id);
@@ -53,12 +54,12 @@ function Createprofile() {
       };
     });
   }
-//Submit form after validation
+  //Submit form after validation
 
   function submitForm(event) {
     event.preventDefault();
     if (validate(input).isValid) {
-      if (id && newInput.filter((elem) => elem && elem.id == id).length > 0) {
+      if (id && newInput.filter((elem) => elem && elem.id === id).length > 0) {
         let indexToReplace = newInput.findIndex(
           (elem) => elem && elem.id == id
         );
@@ -199,13 +200,14 @@ function Createprofile() {
             </>
           )}
         </div>
-        <button onClick={submitForm}>Save</button>
+        <Button type="primary" size="small" onClick={submitForm}>Save</Button>
       </div>
       <div className="form">
         <form className="forminput">
           <input
             type="text"
             name="name"
+            maxlength="15"
             placeholder="Name"
             value={input.name}
             onChange={handleChange}
@@ -230,6 +232,7 @@ function Createprofile() {
           <input
             type="text"
             name="address"
+            maxLength="50"
             placeholder="Address"
             value={input.address}
             onChange={handleChange}

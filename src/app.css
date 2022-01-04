@@ -35,6 +35,12 @@
   background-color: #fff;
   font-weight: bold;
   color: #54575A;
+  text-align: center;
+}
+
+.addcontactbtn:hover{
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    color: #24a0ed;
 }
 
 .userdetails{

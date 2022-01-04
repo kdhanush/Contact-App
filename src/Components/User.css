@@ -3,3 +3,24 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.User-Icons{
+    display: flex;
+    gap: 25px;
+}
+
+.User-Icons button:hover{
+    color: grey;
+}
+
+.default-icon{
+    width:40px;
+    height:40px;
+    text-align: center;
+}
+
+.search-box{
+    border: 0.5px solid grey;
+    outline: none;
+    padding:10px;
+}

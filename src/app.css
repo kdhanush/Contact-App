@@ -1,3 +1,5 @@
+
+
 *{
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
@@ -26,7 +28,6 @@
 
 .addcontactbtn{
     display:flex;
-    width: 200px;
     height: 40px;
     border: none;
   border-radius: 55px;
@@ -89,12 +90,14 @@ min-width:100px;
     column-gap: 400px;
     margin-bottom: 50px;
 }
-.image-upload button{
+/* .image-upload button{
     height:2rem;
     width:5rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border: none;
-}
+    background-color: #007BFF;
+    color:white;
+} */
 .img-upload{
     border-radius: 50%;
     height: 150px;
@@ -111,4 +114,18 @@ select{
 }
 select:active{
     border:none;
+}
+
+.contacts-empty{
+display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+
+}
+
+.contacts-empty h1{
+    color: grey;
 }

@@ -6,7 +6,9 @@ import { useParams } from "react-router-dom";
 import "../app.css";
 import "./form.css";
 import { Upload, message } from "antd";
-import { Button } from "antd";
+import { Button } from 'antd';
+
+
 
 const getLocalItems = () => {
   let localContactItems = localStorage.getItem("Details");
@@ -59,7 +61,7 @@ function Createprofile() {
   function submitForm(event) {
     event.preventDefault();
     if (validate(input).isValid) {
-      if (id && newInput.filter((elem) => elem && elem.id === id).length > 0) {
+      if (id && newInput.filter((elem) => elem && elem.id == id).length > 0) {
         let indexToReplace = newInput.findIndex(
           (elem) => elem && elem.id == id
         );
@@ -154,6 +156,12 @@ function Createprofile() {
     getDataFromId();
   }, []);
 
+  // let isNotFilled = true;
+
+  // if (input.name) {
+  //   isNotFilled = false;
+  // }
+
   return (
     <div className="mastercontainer">
       <div className="master">
@@ -200,14 +208,13 @@ function Createprofile() {
             </>
           )}
         </div>
-        <Button type="primary" size="small" onClick={submitForm}>Save</Button>
+        <button onClick={submitForm}>Save</button>
       </div>
       <div className="form">
         <form className="forminput">
           <input
             type="text"
             name="name"
-            maxlength="15"
             placeholder="Name"
             value={input.name}
             onChange={handleChange}
@@ -232,7 +239,6 @@ function Createprofile() {
           <input
             type="text"
             name="address"
-            maxLength="50"
             placeholder="Address"
             value={input.address}
             onChange={handleChange}

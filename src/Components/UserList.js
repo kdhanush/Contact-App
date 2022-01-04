@@ -3,6 +3,7 @@ import '../app.css';
 // import User from "./User";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import "./User.css";
 // import Createprofile from "./Createprofile";
 
@@ -56,53 +57,64 @@ function UserList() {
 
     return (
         <div>
-            <div className="master">
-                <p style={{ fontSize: "24px", fontWeight: "400", color: "gray" }}>Contacts</p>
-                <input type="text" className="search-box" name="search" placeholder="Search.." value={items.term} onChange={getSearchTerm}></input>
-            </div>
-            <div style={{ display: "flex", flexDirection: "row" }} >
-                <div className="header" >
+            {items.length > 0 ? <div>
+                <div className="master">
+                    <p style={{ fontSize: "24px", fontWeight: "400", color: "gray" }}>Contacts</p>
+                    <input type="text" className="search-box" name="search" placeholder="Search..." value={items.term} onChange={getSearchTerm}></input>
+                </div>
+                <div style={{ display: "flex", flexDirection: "row" }} >
+                    <div className="header" >
+                        <button className="addcontactbtn" onClick={() => {
+                            window.open("http://localhost:3000/adduser", "_self");
+                        }}>+ Create Contact</button>
+                    </div>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                        <div style={{ borderBottom: "1px solid black", minWidth: "800px" }}>
+
+                            <div className="userdetails" style={{ display: "flex" }}>
+                                <p style={{ minWidth: "250px" }}>Name</p>
+                                <p style={{ minWidth: "250px" }} className="mailid">Email</p>
+                            </div>
+                        </div>
+
+                        {items.map((item, i) => {
+
+                            return <div key={item.id} className="userdetails" style={{}}>
+
+                                <p style={{ display: "flex", alignItems: "center", minWidth: "250px", columnGap: "20px" }}>{item.imageUrl?.length ? <img alt="not found" style={{ height: "40px", width: "40px", borderRadius: "50%" }} src={item.imageUrl} /> : <i className="fa fa-2x fa-user default-icon" aria-hidden="true" ></i>}{item?.name}</p>
+                                <p style={{ minWidth: "250px" }}>{item?.email}</p>
+                                <>
+                                    <div className='User-Icons' style={{ marginLeft: "auto" }}>
+                                        <button style={{ border: "none", backgroundColor: "white" }} className='pen-icon' onClick={() => {
+                                            editItems(item.id)
+                                        }}>
+                                            <FontAwesomeIcon icon={faPen} />
+                                        </button>
+                                        <button style={{ border: "none", backgroundColor: "white" }}
+                                            className='trash-icon' onClick={() => {
+                                                deleteHandler(i)
+                                            }}
+                                        >
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </button>
+                                    </div>
+                                </>
+                            </div>
+
+                        })}
+
+                    </div>
+                </div>
+            </div> :
+                <div className="contacts-empty">
+                    <h1>No Contacts Yet</h1>
                     <button className="addcontactbtn" onClick={() => {
                         window.open("http://localhost:3000/adduser", "_self");
                     }}>+ Create Contact</button>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ borderBottom: "1px solid black", minWidth: "800px" }}>
+                </div>}
 
-                        <div className="userdetails" style={{ display: "flex" }}>
-                            <p style={{ minWidth: "250px" }}>Name</p>
-                            <p style={{ minWidth: "250px" }} className="mailid">Email</p>
-                        </div>
-                    </div>
 
-                    {items.map((item, i) => {
 
-                        return <div key={item.id} className="userdetails" style={{}}>
-
-                            <p style={{ display: "flex", alignItems: "center", minWidth: "250px", columnGap: "20px" }}>{item.imageUrl?.length ? <img alt="not found" style={{ height: "40px", width: "40px", borderRadius: "50%" }} src={item.imageUrl} /> : <i className="fa fa-2x fa-user default-icon" aria-hidden="true" ></i>}{item?.name}</p>
-                            <p style={{ minWidth: "250px" }}>{item?.email}</p>
-                            <>
-                                <div className='User-Icons' style={{ marginLeft: "auto" }}>
-                                    <button style={{ border: "none", backgroundColor: "white" }} className='pen-icon' onClick={() => {
-                                        editItems(item.id)
-                                    }}>
-                                        <FontAwesomeIcon icon={faPen} />
-                                    </button>
-                                    <button style={{ border: "none", backgroundColor: "white" }}
-                                        className='trash-icon' onClick={() => {
-                                            deleteHandler(i)
-                                        }}
-                                    >
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </div>
-                            </>
-                        </div>
-
-                    })}
-
-                </div>
-            </div>
 
 
         </div>

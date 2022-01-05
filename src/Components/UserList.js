@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../app.css';
 // import User from "./User";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import "./User.css";
+import Modal from "./Modal"
 // import Createprofile from "./Createprofile";
-
 
 
 const getLocalItems = () => {
@@ -20,10 +20,20 @@ const getLocalItems = () => {
     }
 }
 
+
+
 function UserList() {
 
 
     const [items, setItems] = useState(getLocalItems());
+    // const [openModal, setOpenModal] = useState(false);
+    // const [todelete, setTODelete] = useState(false);
+    const [popup, setPopup] = useState({
+        show: false,
+        id: null,
+    });
+
+
 
 
     //Search Conatct details
@@ -45,22 +55,58 @@ function UserList() {
 
 
     //Delete contact details
-    function deleteHandler(id) {
-        if (window.confirm('Are u sure you want to delete')) {
-            console.log(id, "deleted");
-            let newItems = items.filter((data, index) => data && index !== id)
+
+    function deleteHandler(id){
+        setPopup({
+            show: true,
+            id,
+        });
+    };
+
+    // This will perform the deletion and hide the Confirmation Box
+
+    const handleDeleteTrue = () => {
+        if (popup.show && popup.id>=0) {
+            console.log(popup.id, "deleted");
+            let newItems = items.filter((data, index) => data && index !== popup.id)
             setItems(newItems);
             localStorage.setItem("Details", JSON.stringify(newItems));
+            setPopup({
+                show: false,
+                id: null,
+            });
         }
+    };
+    // This will just hide the Confirmation Box when user clicks "No"/"Cancel"
+    const handleDeleteFalse = () => {
+        setPopup({
+            show: false,
+            id: null,
+        });
+    };
 
-    }
+
+    // function deleteHandler(id) {
+    //     setOpenModal(true);
+    //     if (todelete) {
+    //         console.log(id, "deleted");
+    //         let newItems = items.filter((data, index) => data && index !== id)
+    //         setItems(newItems);
+    //         localStorage.setItem("Details", JSON.stringify(newItems));
+    //     }
+
+    // }
+
 
     return (
         <div>
             {items.length > 0 ? <div>
                 <div className="master">
                     <p style={{ fontSize: "24px", fontWeight: "400", color: "gray" }}>Contacts</p>
-                    <input type="text" className="search-box" name="search" placeholder="Search..." value={items.term} onChange={getSearchTerm}></input>
+                    <div>
+                        <input type="text" className="search-box" name="search" placeholder=" Search..." value={items.term} onChange={getSearchTerm}></input>
+                        <FontAwesomeIcon className="search-icon" icon={faSearch} />
+                    </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "row" }} >
                     <div className="header" >
@@ -113,7 +159,13 @@ function UserList() {
                     }}>+ Create Contact</button>
                 </div>}
 
+            {popup.show && <Modal
+                // deleteData={setTODelete}
+                // closeModal={setOpenModal}
+                handleDeleteTrue={handleDeleteTrue}
+                handleDeleteFalse={handleDeleteFalse}
 
+            />}
 
 
 

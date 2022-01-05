@@ -6,7 +6,7 @@
 
 .User-Icons{
     display: flex;
-    gap: 25px;
+    gap: 20px;
 }
 
 .User-Icons button:hover{
@@ -22,5 +22,15 @@
 .search-box{
     border: 0.5px solid grey;
     outline: none;
-    padding:10px;
+    padding:20px;
+    padding-left: 25px;
+    font-family:'Font Awesome 5 Brands';
+    position: absolute;
+}
+
+.search-icon{
+    position: relative;
+    top: 10px;
+    left: 5px;
+    color: grey;
 }

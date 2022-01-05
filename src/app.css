@@ -129,3 +129,20 @@ display: flex;
 .contacts-empty h1{
     color: grey;
 }
+
+.savebtn{
+    background-color: #0c70f3;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5%;
+    outline: none;
+    border: none;
+}
+
+.savebtn:hover{
+    background-color: #6493d1;
+}
+
+.savebtn:disabled{
+    background-color: #8eaacf;
+}

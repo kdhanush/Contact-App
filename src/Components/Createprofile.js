@@ -156,11 +156,11 @@ function Createprofile() {
     getDataFromId();
   }, []);
 
-  // let isNotFilled = true;
+  let isNotFilled = true;
 
-  // if (input.name) {
-  //   isNotFilled = false;
-  // }
+  if (input.name || input.email || input.phone) {
+    isNotFilled = false;
+  }
 
   return (
     <div className="mastercontainer">
@@ -208,13 +208,14 @@ function Createprofile() {
             </>
           )}
         </div>
-        <button onClick={submitForm}>Save</button>
+        <button className="savebtn" disabled = {isNotFilled} onClick={submitForm}>Save</button>
       </div>
       <div className="form">
         <form className="forminput">
           <input
             type="text"
             name="name"
+            maxLength="20"
             placeholder="Name"
             value={input.name}
             onChange={handleChange}
@@ -239,6 +240,7 @@ function Createprofile() {
           <input
             type="text"
             name="address"
+            maxLength="50"
             placeholder="Address"
             value={input.address}
             onChange={handleChange}

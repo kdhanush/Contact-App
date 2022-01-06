@@ -15,7 +15,8 @@
     width: 100%;
     border: none;
     border-bottom: 1px solid grey;
-    outline: none
+    outline: none;
+    padding:8px;
     
 }
 
@@ -23,6 +24,7 @@
     color: red;
     font-size: 14px;
     margin-right: auto;
+    margin-top: 5px;
 }
 
 .forminput input:active,

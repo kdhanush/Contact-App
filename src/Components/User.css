@@ -7,10 +7,12 @@
 .User-Icons{
     display: flex;
     gap: 20px;
+   
 }
 
 .User-Icons button:hover{
     color: grey;
+    cursor: pointer;
 }
 
 .default-icon{

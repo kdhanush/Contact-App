@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import '../app.css';
 // import User from "./User";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,7 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import "./User.css";
 import Modal from "./Modal"
+import User from "./User/User";
 // import Createprofile from "./Createprofile";
 
 
@@ -24,9 +25,11 @@ const getLocalItems = () => {
 
 function UserList() {
 
-
+    const [selectedContact, setSelectedContact] = useState({})
     const [items, setItems] = useState(getLocalItems());
-    // const [openModal, setOpenModal] = useState(false);
+    const [showDetails, setShowDetails] = useState({
+        show:false
+    });
     // const [todelete, setTODelete] = useState(false);
     const [popup, setPopup] = useState({
         show: false,
@@ -47,6 +50,22 @@ function UserList() {
             setItems(getLocalItems());
         }
     }
+
+    //pass id to view profile
+    function profileClickHandler(item) {
+       setSelectedContact(item);
+       setShowDetails({
+           show:true
+       });
+
+    }
+
+    function closeProfileDetails(){
+        setShowDetails({
+            show:false
+        });
+    }
+
     //Edit contact details
 
     function editItems(id) {
@@ -56,7 +75,7 @@ function UserList() {
 
     //Delete contact details
 
-    function deleteHandler(id){
+    function deleteHandler(id) {
         setPopup({
             show: true,
             id,
@@ -66,7 +85,7 @@ function UserList() {
     // This will perform the deletion and hide the Confirmation Box
 
     const handleDeleteTrue = () => {
-        if (popup.show && popup.id>=0) {
+        if (popup.show && popup.id >= 0) {
             console.log(popup.id, "deleted");
             let newItems = items.filter((data, index) => data && index !== popup.id)
             setItems(newItems);
@@ -100,7 +119,7 @@ function UserList() {
 
     return (
         <div>
-            {items.length > 0 ? <div>
+            {getLocalItems().length > 0 ? <div>
                 <div className="master">
                     <p style={{ fontSize: "24px", fontWeight: "400", color: "gray" }}>Contacts</p>
                     <div>
@@ -125,18 +144,18 @@ function UserList() {
 
                         {items.map((item, i) => {
 
-                            return <div key={item.id} className="userdetails" style={{}}>
+                            return <div key={i} className="userdetails" style={{}}>
 
-                                <p style={{ display: "flex", alignItems: "center", minWidth: "250px", columnGap: "20px" }}>{item.imageUrl?.length ? <img alt="not found" style={{ height: "40px", width: "40px", borderRadius: "50%" }} src={item.imageUrl} /> : <i className="fa fa-2x fa-user default-icon" aria-hidden="true" ></i>}{item?.name}</p>
+                                <p onClick={() => { profileClickHandler(item) }} style={{ display: "flex", alignItems: "center", minWidth: "250px", columnGap: "20px" }}>{item.imageUrl?.length ? <img alt="not found" style={{ height: "40px", width: "40px", borderRadius: "50%" }} src={item.imageUrl} /> : <i className="fa fa-2x fa-user default-icon" aria-hidden="true" ></i>}{item?.name}</p>
                                 <p style={{ minWidth: "250px" }}>{item?.email}</p>
                                 <>
                                     <div className='User-Icons' style={{ marginLeft: "auto" }}>
-                                        <button style={{ border: "none", backgroundColor: "white" }} className='pen-icon' onClick={() => {
+                                        <button style={{ border: "none", backgroundColor: "transparent" }} className='pen-icon' onClick={() => {
                                             editItems(item.id)
                                         }}>
                                             <FontAwesomeIcon icon={faPen} />
                                         </button>
-                                        <button style={{ border: "none", backgroundColor: "white" }}
+                                        <button style={{ border: "none", backgroundColor: "transparent" }}
                                             className='trash-icon' onClick={() => {
                                                 deleteHandler(i)
                                             }}
@@ -167,6 +186,9 @@ function UserList() {
 
             />}
 
+            {showDetails.show && <User
+                passedItem={selectedContact}
+                showDetails ={closeProfileDetails} />}
 
 
         </div>

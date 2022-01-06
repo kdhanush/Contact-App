@@ -1,0 +1,72 @@
+.header-box{
+    display: flex;
+    align-items: center;
+    gap:50px;
+}
+
+
+.profileImage{
+    margin: 10px;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+
+.user-name{
+    font-size: 2rem;
+}
+
+.border-line{
+    border-bottom: 1px solid #B5B6B7;
+    margin: 10px 0 40px;
+}
+
+.detail-container{
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    height:400px;
+    width:500px;
+    display: flex;
+    flex-direction: column;
+    padding:50px;
+    margin: 70px 200px;
+}
+
+.title-name p{
+    font-weight: 700;
+    color: black !important
+}
+
+.detail-container p {
+    color: grey;
+}
+
+.background{
+    width: 100%;
+   height:100%;
+    background-color: rgb(233, 233, 233);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+
+}
+
+.defaultImage{
+    margin: 10px;
+    border-radius: 50%;
+    margin-left: 50px;
+    color: #5F637C;
+}
+
+.profile-image{
+    min-width: 200px;
+}
+
+.closebtn{
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}

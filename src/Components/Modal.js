@@ -13,7 +13,7 @@ function Modal({ handleDeleteTrue,handleDeleteFalse }) {
                     >X</button>
                 </div>
                 <div className='title'>
-                    <h1>Are u sure you want to delete?</h1>
+                    <h1>Are you sure you want to delete?</h1>
                 </div>
                 <div className='footer'>
                     <button  id ="cancelBtn" onClick={

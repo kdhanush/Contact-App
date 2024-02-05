@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../app.css";
 import "./form.css";
-import { Upload, message } from "antd";
-import { Button } from 'antd';
+import { Upload } from "antd";
 
 
 
@@ -78,7 +76,7 @@ function Createprofile() {
           gender: "male",
         });
         seterrors({});
-        window.open("http://localhost:3000", "_self");
+        window.open(window.origin, "_self");
       } else {
         let newArray = [...newInput, input];
 
@@ -95,7 +93,7 @@ function Createprofile() {
           gender: "male",
         });
         seterrors({});
-        window.open("http://localhost:3000", "_self");
+        window.open(window.origin, "_self");
       }
     } else {
       seterrors(validate(input).error);

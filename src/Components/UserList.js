@@ -69,7 +69,7 @@ function UserList() {
     //Edit contact details
 
     function editItems(id) {
-        window.open(`http://localhost:3000/adduser/${id}`, "_self")
+        window.open(`${window.origin}/adduser/${id}`, "_self")
     }
 
 
@@ -130,7 +130,7 @@ function UserList() {
                 <div style={{ display: "flex", flexDirection: "row" }} >
                     <div className="header" >
                         <button className="addcontactbtn" onClick={() => {
-                            window.open("http://localhost:3000/adduser", "_self");
+                            window.open(`${window.origin}/adduser`, "_self");
                         }}>+ Create Contact</button>
                     </div>
                     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -174,7 +174,7 @@ function UserList() {
                 <div className="contacts-empty">
                     <h1>No Contacts Yet</h1>
                     <button className="addcontactbtn" onClick={() => {
-                        window.open("http://localhost:3000/adduser", "_self");
+                         window.open(`${window.origin}/adduser`, "_self");
                     }}>+ Create Contact</button>
                 </div>}
 
